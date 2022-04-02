@@ -1,0 +1,17 @@
+flask
+flask-bootstrap
+flask-sqlalchemy
+flask-wtf
+flask-login
+flask-mail
+flask-security
+flask-principal
+flask-admin
+itsdangerous
+passlib
+PyQRCode
+pymysql
+python-dotenv
+onetimepass
+email-validator
+flask-migrate
