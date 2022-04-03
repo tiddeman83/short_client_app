@@ -1,2 +1,4 @@
+migrate/
 venv/
 backend/.env
+__pychace__

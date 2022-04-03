@@ -15,3 +15,5 @@ python-dotenv
 onetimepass
 email-validator
 flask-migrate
+flask-jwt
+flask-restx
