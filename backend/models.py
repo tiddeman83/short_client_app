@@ -40,10 +40,23 @@ class Users(db.Model, UserMixin):
     first_name = db.Column(db.String(64))
     middle_name = db.Column(db.String(20))
     last_name = db.Column(db.String(64))
+    otp_secret = db.Column(db.String(16))
 
     def __init__(self, **kwargs):
         super(Users, self).__init__(**kwargs)
 
+        if self.otp_secret is None:
+            self.otp_secret = base64.b32encode(os.urandom(10)).decode('utf-8')
+
     def save(self):
         db.session.add(self)
         db.session.commit()
+
+    def get_id(self):
+        return self.id
+
+    def get_totp_uri(self):
+        return 'otpauth://totp/VWWBD-oek:{0}?secret={1}&issuer=DevBoss_VwWBD'.format(self.username, self.otp_secret)
+
+    def verify_totp(self, token):
+        return onetimepass.valid_totp(self.otp_secret, token)
